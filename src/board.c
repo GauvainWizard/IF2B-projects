@@ -8,7 +8,7 @@
 
 #include "board.h"
 
-void board_init_standard(Board *board, uint8_t nb_square)
+void board_init_standard(Board *board, const uint8_t nb_square)
 {
     // Initialize the board
 
@@ -52,12 +52,12 @@ void board_init_standard(Board *board, uint8_t nb_square)
     piece_set_type(piece, KING);
 }
 
-Square *board_get_square(Board *board, uint8_t x, uint8_t y)
+Square *board_get_square(Board *board, const uint8_t x, const uint8_t y)
 {
     return &board->squares[y * board->nb_square + x];
 }
 
-uint8_t board_get_nb_square(Board *board)
+const uint8_t board_get_nb_square(Board *board)
 {
     return board->nb_square;
 }
@@ -73,21 +73,54 @@ void board_free(Board *board)
 
 void board_display(Board *board)
 {
+    // Char used to to display the board
+    char types[6][2] = {"Ro", "Kn", "Bi", "Pa", "Qu", "Ki"};
+    char colors[2] = {'W', 'B'};
     // Get the number of square on the board
     uint8_t nb_square = board_get_nb_square(board);
+    // Display the column letters
+    printf("  ");
+    for (uint8_t i = 0; i < nb_square; ++i)
+        printf("   %c  ", i + 65); // 65 is the ascii code for 'A'
+    printf("\n");
     // Display the board
     for (uint8_t y = 0; y < nb_square; ++y)
     {
+        // Display a line -
+        printf("  |");
+        for (uint8_t i = 0; i < nb_square; ++i)
+            printf("-----|");
+        printf("\n");
+        // Display the number of the line
+        printf("%d |", y + 1);
+        // Display the line
         for (uint8_t x = 0; x < nb_square; ++x)
         {
+            // Get the square
             Square *square = board_get_square(board, x, y);
+            // Get the piece on the square
             Piece *piece = square_get_piece(square);
 
+            // If there is a piece on the square
             if (piece != NULL)
-                printf("%s", piece_get_type(piece) == KING ? "K" : "P");
+            {
+                TYPE type = piece_get_type(piece);
+                COLOR color = piece_get_color(piece);
+                printf(" %c%c%c ", types[type][0], types[type][1], colors[color]);
+                printf("|");
+            }
+            // If there is no piece on the square
             else
-                printf(".");
+            {
+                printf("     ");
+                printf("|");
+            }
         }
         printf("\n");
     }
+    // Display a line -
+    printf("  |");
+    for (uint8_t i = 0; i < nb_square; ++i)
+        printf("-----|");
+    printf("\n");
 }

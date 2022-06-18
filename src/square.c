@@ -8,7 +8,7 @@
 
 #include "board.h"
 
-void square_init(Square *square, uint8_t x, uint8_t y)
+void square_init(Square *square, const uint8_t x, const uint8_t y)
 {
     square->x = x;
     square->y = y;

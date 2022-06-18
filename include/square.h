@@ -39,7 +39,7 @@ typedef struct
  * @param x The x-coordinates of the square.
  * @param y The y-coordinates of the square.
  */
-void square_init(Square *square, uint8_t x, uint8_t y);
+void square_init(Square *square, const uint8_t x, const uint8_t y);
 
 /**
  * @brief Allocate the memory and set the piece of the square.

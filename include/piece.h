@@ -20,7 +20,7 @@ typedef enum
     PAWN,
     QUEEN,
     KING
-} PIECE;
+} TYPE;
 
 /**
  * @brief Enum of the two colors in the game.
@@ -48,7 +48,7 @@ typedef struct
     /**
      * @brief Type of the piece.
      */
-    PIECE type;
+    TYPE type;
 
     /**
      * @brief Color of the piece.
@@ -75,39 +75,39 @@ void piece_init_random(Piece *piece, COLOR color);
  * @param color Color of the piece.
  * @param state State of the piece.
  */
-void piece_init_specific(Piece *piece, PIECE type, COLOR color, STATE state);
+void piece_init_specific(Piece *piece, const TYPE type, const COLOR color, const STATE state);
 
 /**
  * @brief Set the state of the piece.
  * @param piece The piece to change.
  * @param state The new state.
  */
-void piece_set_state(Piece *piece, STATE state);
+void piece_set_state(Piece *piece, const STATE state);
 
 /**
  * @brief Set the type of the piece.
  * @param piece The piece to change.
  * @param type The new type.
  */
-void piece_set_type(Piece *piece, PIECE type);
+void piece_set_type(Piece *piece, const TYPE type);
 
 /**
  * @brief Get the type of the piece.
  * @param piece The piece to get the type.
  */
-PIECE piece_get_type(Piece *piece);
+const TYPE piece_get_type(Piece *piece);
 
 /**
  * @brief Get the color of the piece.
  * @param piece The piece to get the color.
  */
-COLOR piece_get_color(Piece *piece);
+const COLOR piece_get_color(Piece *piece);
 
 /**
  * @brief Get the state of the piece.
  * @param piece The piece to get the state.
  */
-STATE piece_get_state(Piece *piece);
+const STATE piece_get_state(Piece *piece);
 
 /**
  * @brief Free the piece.

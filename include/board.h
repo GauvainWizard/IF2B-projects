@@ -35,14 +35,14 @@ typedef struct
  * @param board The board to init.
  * @param nb_square The number of square on the board.
  */
-void board_init_standard(Board *board, uint8_t nb_square);
+void board_init_standard(Board *board, const uint8_t nb_square);
 
 /**
  * @brief Init the board with a file
  * @param board The board to init.
  * @param file The file to read.
  */
-void board_init_from_file(Board *board, char *file);
+void board_init_from_file(Board *board, const char *file);
 
 /**
  * @brief Get the square of the board.
@@ -51,14 +51,14 @@ void board_init_from_file(Board *board, char *file);
  * @param y The y-coordinates of the square.
  * @return The square.
  */
-Square *board_get_square(Board *board, uint8_t x, uint8_t y);
+Square *board_get_square(Board *board, const uint8_t x, const uint8_t y);
 
 /**
  * @brief Get the number of square on the board.
  * @param board The board.
  * @return The number of square on the board.
  */
-uint8_t board_get_nb_square(Board *board);
+const uint8_t board_get_nb_square(Board *board);
 
 /**
  * @brief Display the board.
